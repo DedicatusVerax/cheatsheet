@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cheat Sheet - Intelligence Professionals</title>
+    <style>
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 20mm;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 20mm;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h3 {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .box {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .box h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .box ul {
+            margin-left: 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .box li {
+            margin-bottom: 0.3rem;
+        }
+
+        .prompt-example {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #856404;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .tool-box {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        .tool-box strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            background: #f8f9fa;
+            border-radius: 3px;
+            position: relative;
+            padding-left: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0.6rem;
+            color: #28a745;
+            font-weight: 700;
+        }
+
+        .quick-ref {
+            background: #e7f3ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quick-ref h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 0.6rem;
+            text-align: left;
+        }
+
+        table td {
+            padding: 0.6rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e0e0e0;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Print Cheat Sheet</button>
+
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Cheat Sheet</h1>
+            <p>Voor Intelligence Professionals | Quick Reference Guide</p>
+        </div>
+
+        <!-- Section 1: Prompting Framework -->
+        <div class="section">
+            <h2>1️⃣ Prompting Framework</h2>
+            
+            <div class="quick-ref">
+                <h4>De 5-Stappen Methode voor Betere Prompts:</h4>
+                <table>
+                    <tr>
+                        <th>Stap</th>
+                        <th>Beschrijving</th>
+                        <th>Voorbeeld</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Rol</strong></td>
+                        <td>Geef AI een rol</td>
+                        <td>"Je bent een cyber security expert"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Context</strong></td>
+                        <td>Geef achtergrond</td>
+                        <td>"We onderzoeken phishing campagne"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Taak</strong></td>
+                        <td>Wees specifiek</td>
+                        <td>"Analyseer deze email headers"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Format</strong></td>
+                        <td>Vraag structuur</td>
+                        <td>"Geef resultaat in tabel"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Beperkingen</strong></td>
+                        <td>Stel eisen</td>
+                        <td>"Max 200 woorden, B1 taalniveau"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>✅ Goed vs ❌ Slecht</h3>
+            <div class="grid-2">
+                <div class="box">
+                    <h4>❌ SLECHT</h4>
+                    <div class="prompt-example" style="background: #ffebee; color: #c62828;">"Leg uit over cybercrime"</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;"><em>Te vaag, geen context, geen structuur</em></p>
+                </div>
+                <div class="box">
+                    <h4>✅ GOED</h4>
+                    <div class="prompt-example">"Je bent intelligence analyst. Geef overzicht van top 5 cybercrime trends NL 2024. Per trend: methode, doelgroep, preventie. Format: tabel."</div>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem;"><em>Specifiek, gestructureerd, duidelijk doel</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Ready-to-Use Prompts -->
+        <div class="section">
+            <h2>2️⃣ Ready-to-Use Prompts</h2>
+
+            <h3>📋 Document Analyse</h3>
+            <div class="prompt-example">
+Vat het volgende document samen voor een intelligence briefing:
+- Wie zijn betrokken?
+- Wat is er gebeurd?
+- Wanneer en waar?
+- Mogelijk motieven
+- Relevantie voor onze operatie
+
+[Plak document hier]
+
+Max 200 woorden, gebruik bullets.
+            </div>
+
+            <h3>🔍 OSINT Onderzoek</h3>
+            <div class="prompt-example">
+Je bent een OSINT specialist. Ik onderzoek [ONDERWERP].
+Maak een checklist van 10 verificatiestappen.
+Geef per stap:
+- Wat te checken
+- Welke tools te gebruiken
+- Waar op te letten
+
+Format: genummerde lijst met subpunten.
+            </div>
+
+            <h3>📧 Email/Message Analyse</h3>
+            <div class="prompt-example">
+Analyseer deze email op phishing indicatoren:
+
+[Plak email hier]
+
+Geef:
+1. Alle red flags (met uitleg)
+2. Social engineering tactieken gebruikt
+3. Wat slachtoffer moet doen
+4. Preventietips
+
+Format: genummerde lijst.
+            </div>
+
+            <h3>🎭 Deepfake Verificatie</h3>
+            <div class="prompt-example">
+Maak een checklist om deepfake video's te herkennen.
+Verdeel in:
+- Visuele tekenen (10 punten)
+- Audio tekenen (5 punten)  
+- Context checks (5 punten)
+
+Geef praktische tips die niet-technisch personeel kan uitvoeren.
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- Section 3: AI Tools Overview -->
+        <div class="section">
+            <h2>3️⃣ AI Tools Quick Reference</h2>
+
+            <div class="tools-grid">
+                <div class="tool-box">
+                    <strong>ChatGPT</strong>
+                    <p>Beste voor: Algemene analyse, brainstormen</p>
+                    <p>Link: chat.openai.com</p>
+                </div>
+
+                <div class="tool-box">
+                    <strong>Claude</strong>
+                    <p>Beste voor: Lange documenten, veiligheid</p>
+                    <p>Link: claude.ai</p>
+                </div>
+
+                <div class="tool-box">
+                    <strong>Perplexity</strong>
+                    <p>Beste voor: Zoeken met bronvermelding</p>
+                    <p>Link: perplexity.ai</p>
+                </div>
+
+                <div class="tool-box">
+                    <strong>Google Gemini</strong>
+                    <p>Beste voor: Recente informatie</p>
+                    <p>Link: gemini.google.com</p>
+                </div>
+            </div>
+
+            <h3>🔍 Deepfake Detectie Tools</h3>
+            <ul style="margin-left: 1.5rem; font-size: 0.9rem;">
+                <li>Sensity AI - Deepfake detectie platform</li>
+                <li>Microsoft Video Authenticator</li>
+                <li>Intel FakeCatcher - Real-time detector</li>
+                <li>Deepware Scanner - Gratis online</li>
+            </ul>
+        </div>
+
+        <!-- Section 4: Deepfake Recognition -->
+        <div class="section">
+            <h2>4️⃣ Deepfake Herkenning</h2>
+
+            <div class="grid-2">
+                <div class="box">
+                    <h4>👁️ Visuele Tekenen</h4>
+                    <ul>
+                        <li>Onnatuurlijk knipperen</li>
+                        <li>Wazig rond gezicht</li>
+                        <li>Inconsistente belichting</li>
+                        <li>Vreemde tanden/mond</li>
+                        <li>Haar ziet er nep uit</li>
+                        <li>Geen reflecties in ogen</li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h4>🎧 Audio Tekenen</h4>
+                    <ul>
+                        <li>Robotachtige stem</li>
+                        <li>Onnatuurlijke pauzes</li>
+                        <li>Inconsistente achtergrond</li>
+                        <li>Geen lipsync</li>
+                        <li>Vreemde intonatie</li>
+                        <li>Te perfect geluid</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box" style="margin-top: 1rem;">
+                <h4>🔍 Context Checks</h4>
+                <ul class="checklist">
+                    <li>Verifieer via tweede bron/kanaal</li>
+                    <li>Check metadata van video</li>
+                    <li>Zoek naar originele bron</li>
+                    <li>Kijk naar timing (waarom nu?)</li>
+                    <li>Wie deelt dit en waarom?</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Do's and Don'ts -->
+        <div class="section">
+            <h2>5️⃣ Do's & Don'ts</h2>
+
+            <div class="grid-2">
+                <div class="box" style="border-color: #28a745;">
+                    <h4 style="color: #28a745;">✅ DO's</h4>
+                    <ul class="checklist">
+                        <li>Verifieer AI output altijd</li>
+                        <li>Gebruik meerdere bronnen</li>
+                        <li>Document je proces</li>
+                        <li>Wees transparant over AI gebruik</li>
+                        <li>Gebruik alleen openbare data</li>
+                        <li>Blijf kritisch</li>
+                    </ul>
+                </div>
+
+                <div class="box" style="border-color: #dc3545;">
+                    <h4 style="color: #dc3545;">❌ DON'Ts</h4>
+                    <ul style="margin-left: 1.2rem;">
+                        <li><strong>NOOIT</strong> vertrouwelijke data in AI</li>
+                        <li><strong>NOOIT</strong> persoonsgegevens delen</li>
+                        <li><strong>NOOIT</strong> blind vertrouwen op AI</li>
+                        <li><strong>NOOIT</strong> operationele info gebruiken</li>
+                        <li><strong>NOOIT</strong> AI als enige bron</li>
+                        <li><strong>NOOIT</strong> zonder verificatie delen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ PRIVACY WAARSCHUWING:</strong> Alles wat je in AI tools invoert kan worden opgeslagen en gebruikt voor training. Gebruik ALLEEN openbare informatie!
+            </div>
+        </div>
+
+        <!-- Section 6: Quick Tips -->
+        <div class="section">
+            <h2>6️⃣ Quick Tips</h2>
+
+            <div class="grid-2">
+                <div class="box">
+                    <h4>💡 Betere Resultaten</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li>Wees specifiek in je vraag</li>
+                        <li>Geef voorbeelden</li>
+                        <li>Vraag om stap-voor-stap</li>
+                        <li>Gebruik "Leg uit alsof ik..."</li>
+                        <li>Itereer: verfijn je prompt</li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h4>🚀 Pro Technieken</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li>Chain-of-thought prompting</li>
+                        <li>Few-shot learning (geef voorbeelden)</li>
+                        <li>Vraag AI om zelf te checken</li>
+                        <li>Gebruik system prompts</li>
+                        <li>Split complexe taken op</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>AI Training voor Intelligence Professionals</strong></p>
+            <p>Dit document is een quick reference guide. Voor diepgaande informatie, zie de volledige training materialen.</p>
+            <p style="margin-top: 0.5rem;">© 2025 | Blijf leren, blijf nieuwsgierig, gebruik AI verantwoord! 🚀</p>
+        </div>
+    </div>
+</body>
+</html>
